@@ -27,23 +27,29 @@
     }
   }
 
-  render();
-
   const favoriteBooks = [];
 
-  function initActions(){
+  function initActions() {
     const images = document.querySelectorAll(select.containerOf.bookImage);
 
-    for(let image of images){
-      image.addEventListener('dbclick', function(event){
+    for (let image of images) {
+      image.addEventListener('click', function (event) {
         event.preventDefault();
-        image.classList.add('favorite');
         let bookId = image.getAttribute('data-id');
-        favoriteBooks.push(bookId);
-        console.log('favoriteBooks:', favoriteBooks);
+        if (favoriteBooks.includes(bookId)) {
+          image.classList.remove('favorite');
+          favoriteBooks.splice(favoriteBooks.indexOf(bookId), 1);
+          console.log('favoriteBooks:', favoriteBooks);
+        } else {
+          image.classList.add('favorite');
+          favoriteBooks.push(bookId);
+          console.log('favoriteBooks:', favoriteBooks);
+        }
       });
     }
   }
+
+  render();
 
   initActions();
 }
