@@ -30,23 +30,25 @@
   const favoriteBooks = [];
 
   function initActions() {
-    const images = document.querySelectorAll(select.containerOf.bookImage);
+    const booksList = document.querySelector(select.containerOf.booksList);
 
-    for (let image of images) {
-      image.addEventListener('click', function (event) {
-        event.preventDefault();
-        let bookId = image.getAttribute('data-id');
+    booksList.addEventListener('click', function (event) {
+      event.preventDefault();
+      const image = event.target.offsetParent;
+
+      if (image.classList.contains('book__image')) {
+        const bookId = image.getAttribute('data-id');
         if (favoriteBooks.includes(bookId)) {
           image.classList.remove('favorite');
           favoriteBooks.splice(favoriteBooks.indexOf(bookId), 1);
-          console.log('favoriteBooks:', favoriteBooks);
+          console.log(favoriteBooks);
         } else {
           image.classList.add('favorite');
           favoriteBooks.push(bookId);
-          console.log('favoriteBooks:', favoriteBooks);
+          console.log(favoriteBooks);
         }
-      });
-    }
+      }
+    });
   }
 
   render();
