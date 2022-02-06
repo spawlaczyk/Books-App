@@ -61,7 +61,7 @@
     initActions() {
       const thisBooksList = this;
 
-      thisBooksList.bookList.addEventListener('click', function (event) {
+      thisBooksList.bookList.addEventListener('dblclick', function (event) {
         event.preventDefault();
         const image = event.target.offsetParent;
 
@@ -80,6 +80,7 @@
       });
 
       thisBooksList.filters.addEventListener('click', function (event) {
+        event.preventDefault();
         const clickedFilter = event.target;
         if (clickedFilter.tagName === 'INPUT' && clickedFilter.type === 'checkbox' && clickedFilter.name === 'filter') {
           if (clickedFilter.checked) {
